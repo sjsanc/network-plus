@@ -1,0 +1,103 @@
+**A. Summarise Common Networking Attacks**
+- **CIA Triad**
+	- *Confidentiality*
+	- *Integrity*
+	- *Availability*
+- **Security Policies** 
+	- making a system more secure via security controls is called *hardening* 
+- **Concepts**
+	- *Vulnerability* - a weakness that can lead to a security breach
+	- *Threat* - the potential for a *threat agent* or actor to exercise a weakness via a *threat vector*
+	- *Exploit* - the specific means of using a vulnerability
+	- *Risk* - likelihood or impact of a threat actor exercising a vulnerability
+	- *Zero-day* - a vulnerability exploited before vendor can patch it
+	- *Exfiltrate* - to steal information from a system
+	- *Footprinting* - gathering information about a system
+	- *Eavesdropping* - (sniffing) capturing and reading packets
+	- *Spoofing* - impersonating or disguising identity (such as phishing)
+	- *Man-in-the-middle* - transparently intercepting traffic
+- **IP Spoofing**
+	- Common in DDoS, where the origin IP in the packet is forged
+- **ARP Cache Poisoning**
+	- ??
+- **DNS Poisoning**
+	- pharming
+- **DoS Attacks**
+	- *Resource Exhaustion*
+	- *Blinding* - overload a logging or alerting system
+- **DDoS Attacks**
+	- *handlers, masters, herders*
+	- *BOTNETS!*
+	- *SYN flood*
+- **DRDoS Attack (amplification)**
+	- *Smurf Attack*
+	- *Bogus DNS queries*
+	- *NTP*
+
+**B. Explain the Characteristics of VLANs**
+- **Network Segmentation**
+	- The process of determining which parts of the network are accessible to each other via *access controls*.
+	- Can be enforced via VLANs, VPNs, subnets, and virtualisation.
+	- Firewalls can be used to apply traffic rules.
+	- An *air gap* is a physical, rather than logical, separation of hosts.
+- **Virtual LANs (VLANs)**
+	- Hosts on the same switch are in the same broadcast domain, thus vulnerable to excessive broadcast traffic and malware such as ARP spoofing.
+	- VLANs create separate broadcast domains, security zones, and help with QoS by segregating traffic (i.e. putting VoIP on a separate VLAN).
+	- Layer 3 swtiches use *application-specific integrated circuits (ASICs)*
+- **Static and Dynamic VLAN Membership**
+	- *Static* - port ranges on a switch are assigned to a VLAN via the web interface. 
+	- *Dynamic* - hosts are assigned to VLAN via some feature of the host
+- **VLAN Assignment Issues**
+	- Ensure network resources are available to the VLAN (like DNS server)
+	- Ensure VLAN-to-VLAN communication is enabled if needed.
+- **Trunking and IEEE 802.1Q**
+	- Trunk lines connect switches in a network.
+	- IEEE 802.1Q (or Inter-Switch Link from Cisco) defines a VLAN tag (VID) inserted in the Ethernet frame (between the source address and EtherType fields), containing the VID and priority (for QoS).
+- **Tagged and Untagged Ports**
+	- *Untagged*, or *access* or *host*, will only connect to a single VLAN.
+		- If frame is addressed to host on same VLAN, no tag is added
+		- If frame is addressed over trunk, the 802.1Q tag is added
+		- If a tagged frame is received, it strips the tag.
+	- Whereas a *tagged* port operates as a trunk, capable of transporting traffic to multiple VLANs.
+- **Default VLAN and Native VLAN**
+	- The *default VLAN* is VID 1. This should always be changed.
+	- The *native VLAN* is one which any untagged traffic is sent, and is by default the default VLAN. Users should change the native VLAN (which exists to provide backwards comparability for non-VLAN traffic) to any other VID.
+	- Unused ports should be disabled and assigned to a *black hole VLAN* that is inaccessible from anywhere else.
+	- A *VLAN mismatch error* occurs when the native VLAN ID is different between switches.
+- **VLAN Hopping Attack**
+	- An attacker inserts two tags into the frame. The first header gets stripped and the frame gets forwarded to the second. Thus, a DoS can occur between unconnected VLANs. Can be mitigated by setting the native VLAN ID to an inaccessible VLAN.
+	- An attacker can spoof a switch by creating a trunk port if the trunk ports aren't pre-configured.
+- **VLAN Trunking Protocol (VTP)**
+	- VTP is Cisco proprietary. Standards-based is **Multiple VLAN Registration Protocol (MVRP)**
+	- Allows VLANs to be configured across multiple switch devices without configuring each manually.
+	- Switches are assigned *server* and *client* management roles and grouped into *management domains*. 
+	- *Pruning* means removing a VLANs traffic from a trunk line.
+	- *Multiple Spanning Trees Protocol (MSTP)* is used to deny access to specific VLANs in a tree network.
+- **Guide to Implementing VLAN Infra.**
+	- Assign devices to VLANs by type (VoIP, wired, wireless, printers etc).
+	- Use VLANs for security zones. 
+	- Aim for a max of 250 hosts in a VLAN (/24 subnet).
+	- Use VLANs for each floor to minimise trunk traffic.
+	- Don't use VLAN 1.
+
+**C. Explain the Characteristics of NAT and Port Forwarding**
+- *Zone* - an area of the network where security config is the same.
+- *Firewall* - filters traffic passing via network via *access control list (ACL)* rules.
+- **DMZ** 
+	- acts as a perimeter network so that network nodes never directly interface with the internet, by acting as a proxy. 
+	- Hosts within a DMZ (mail server, web server) are un-trusted by internal network hosts as they may be compromised. 
+	- *Screened subnet* - a DMZ consisting firewalls on either side. 
+	- *3-leg subnet* - a single firewall handles in and outbound traffic, with the DMZ held to one side.
+	- *Screened host*
+	- *Soho DMZ*
+- **NAT**
+	- Network Address Translation allows a firewall to map addresses between outside and inside interfaces, allowing real host IP addresses to be obscured. 
+	- With static NAT, mapping is fixed. With dynamic NAT, mappings are bound and released for each session. 
+	- TODO: explore NAT further. 
+- **PAT**
+	- Port Address Translation.
+	- Multiple hosts on a network can connect to an external web server via the same firewall by using a different port. The web server sees traffic coming from a single host (the firewall). Traffic between the two is mapped via the PAT mapping tables. 
+- **Port Forwarding (DNAT)**
+	- Destination NAT
+	- Traffic destined for one port is redirected to another.
+

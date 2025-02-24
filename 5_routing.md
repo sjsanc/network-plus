@@ -1,0 +1,129 @@
+**Characteristics of Routing**
+- Routing occurs when a host needs to communicate across different IP networks or subnets.
+- System Types
+	- End Systems: Cannot forward packets; typically, these are your standard computers and devices.
+	- Intermediate Systems: Forward packets between networks; these include routers and certain types of switches.
+- Switches vs. Routers
+	- Switches:
+		- Forward packets based on L2 MAC addresses.
+		- Operate within broadcast domains (link-local).
+		- Flood broadcast traffic to all ports within the domain.
+	- Routers:
+		- Forward packets based on L3 protocol addresses (usually IP).
+		- Use routing tables to determine the next hop for packets.
+		- Strip the L2 header and replace it for the next hop, effectively moving packets between different network segments.
+		- Each interface represents a separate broadcast domain, enabling segmentation of traffic at the network layer.
+- Routing Tables
+	- Each entry in the table stores the route to a network ID.
+	- Parameters:
+		- Destination IP address / netmask: Defines the network or host destination.
+		- Gateway / next hop: IP address of the next router in the path.
+		- Interface: The local port used to forward traffic.
+		- Metric: Weight or cost associated with the route.
+	- Table Categories:
+		- Direct: Routes to directly attached subnets.
+		- Remote: Routes to subnets and IP networks that are not directly attached.
+		- Host: Routes specifically to individual IP addresses.
+		- Default: Used when no specific route is found; directs traffic to the default gateway.
+	- Most routers use **dynamic routing** to discover remote networks and determine the optimal path for each packet.
+	- **Dynamic routing algorithms** like BGP, OSPF, or RIP are employed to populate the routing tables.
+	- Packets with a TTL (Time to Live) of 0 are dropped to prevent "zombie packets" from circulating endlessly.
+- Route Types
+	- Static: Manually defined routes that do not change unless reconfigured.
+	- Default: The route used for an unknown destination.
+		- For End Systems (e.g., a personal computer), this is typically the local router.
+	- Learned: Routes that are communicated by another router, usually via dynamic routing protocols.
+- Convergence
+	- The process by which routers agree on the best routes.
+	- Routers "converge" to the optimal paths as the network topology changes.
+	- A "black hole" occurs when a packet is discarded without notification, often due to a routing misconfiguration.
+	- A "loop" occurs when a packet cycles endlessly between routers until its TTL expires.
+	- A "steady state" is achieved when every router shares the same network topology view.
+	- A "flapping interface" refers to a router interface that continuously goes up and down, negatively affecting network stability and convergence.
+- Hierarchical Routing
+	- Routers are organized into tiers, with restrictions on communication paths, ensuring that most traffic passes through high-performance backbone routers.
+- Routing Algorithms
+	- Distance Vector (slower convergence):
+		- 1. Routers share their entire routing table with neighbors.
+		- 2. Each neighbor increments the `metric` to indicate the additional hop.
+		- 3. If two routes to the same network exist, the slower route is dropped.
+	- Link-State (better convergence):
+		- 1. Routers propagate information only if there is a change in their links to other routers.
+		- 2. Periodic "hello" packets are sent to maintain neighbor relationships, but not to update the entire network.
+- Routing Metrics
+	- Path Length: The number of hops.
+	- Reliability: The link's uptime or stability.
+	- Latency: The time taken for a link to respond.
+	- Bandwidth: The capacity of a link to carry data.
+	- Load: The current traffic on the link.
+	- MTU: Maximum Transmission Unit, the largest packet size that can be sent without fragmentation.
+	- Price/Cost: May include financial cost associated with a particular link or path, used in scenarios like cost-based routing.
+- Dynamic Routing Protocols
+	- Used to automatically build and maintain a routing table based on the network's current topology.
+	- Types:
+		- Interior Gateway Protocol (IGP):
+			- Routes within a network owned by a single entity, known as an Autonomous System (AS).
+		- Exterior Gateway Protocol (EGP):
+			- Routes between different Autonomous Systems.
+	- Protocols:
+		- Routing Information Protocol (RIP):
+			- Distance Vector / IGP.
+			- Ranks routes using hop count.
+			- Has a maximum network size of 15 hops, making it suitable for small organizations.
+			- Propagates via UDP port 520 (521 for RIPng with IPv6).
+		- Enhanced Interior Gateway Routing Protocol (EIGRP):
+			- Distance Vector / IGP.
+			- Ranks routes using multiple metrics like reliability, bandwidth, and delay.
+			- A native IP protocol using 88 in the protocol field of the IP header.
+			- Offers better fault tolerance and control than RIP.
+		- Open Shortest Path First (OSPF):
+			- Hierarchical Link-State / IGP.
+			- Organizes networks into areas based on topology, maintaining a shortest path tree for faster convergence.
+			- Discovers routes via Link State Advertisements (LSA).
+			- Cross-area traffic is routed through Area 0 backbone routers.
+			- Uses protocol number 89 in the IP header (OSPF Datagram format).
+		- Border Gateway Protocol (BGP):
+			- Can be used as both an Interior (iBGP) or Exterior (eBGP) Gateway Protocol.
+			- Manages routing between Autonomous Systems (AS), such as ISPs.
+			- Border routers exchange only routes to other ASs, focusing on the AS path.
+			- AS Numbers (ASN) are allocated by IANA.
+			- BGP ranks routes using CIDR IP prefixes called Network Layer Reachability Information (NLRI), factoring in hop count, weight, etc.
+			- A path vector routing protocol.
+			- Operates over TCP port 179.
+		- Route Aggregation / Summarization:
+			- Combines routes with a shared network prefix into a single table entry, reducing the size of the routing table.
+			- CIDR blocks (Classless Inter-Domain Routing) are typically allocated in 8-bit increments (/8s), usually by IANA.
+
+**Install & Configure Routers**
+- Types of Routers
+	- *Network Operating System (NOS)* 
+		- with multiple interface cards *(multi-homed)*.
+	- *Edge/Border Routers* 
+		- Connect private networks to the internet
+		- Can perform re-framing of packets
+		- Placed at network perimeter
+- Routers always operate at Layer 3, even if they contain Layer 1 and 2 capabilities.
+- Enterprise networks typically use a Layer 3 switch that can create VLANs. 
+- Routers are typically accessed via a console port, or SSH over IP. 
+- **Default Entries for a Routing Table**
+	- Default route
+	- Loopback address
+	- Host's subnet address
+	- Host's own address
+	- Multicast address
+	- Broadcast address
+- **Tools**
+	- `route` or `ip` in UNIX for managing the route table
+	- `tracert` in Windows or `traceroute` for tracing a packet
+	- `pathping` or `mtr` for measuring latency
+	- *Looking Glass* sites are servers that expose their routing table
+- **High Availability Routing**
+	- *Hot Standby Router Protocol (HSRP)*
+		- Allows multiple physical routers to serve as a single default gateway for a subnet in a *standby  group*, communicating via multicast.
+		- To do this, each router must share a *virtual IP* and common MAC. 
+		- If the default router becomes unavailable, the highest priority standby takes over.
+	- *Virtual Router Redundancy Protocl (VRRP)*
+		- Like HSRP but open.
+		- Active router is called *master* with *backup routers*.
+		- VRRP doesn't need each router interface to be assigned a unique IP, so uses less space than HSRP.
+	- 

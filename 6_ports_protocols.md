@@ -1,0 +1,150 @@
+**A. Explain the Uses of Ports and Protocols**
+- **TCP**
+	- **Properties**
+		- Layer 4 (Network Layer)
+		- Unicast, multiplexed data transmission
+		- 20 byte header
+		- Creates *segments* from PDUs by framing with a header
+		- Adds a *sequence number* for out-of-order receiving
+		- Provides flow control via a *sliding window*, a header field indicating number of bytes that can be received before acknowledging.
+		- Can re-transmit lost packages via *ACK* and *NACK*.
+		- Acknowledgements incur overhead by ensure integrity
+	- **3-Way Handshake**
+		- Client sends **SYN**
+		- Client enters *SYN-SENT* state
+		- Server - in *LISTEN* state - responds with **SYN/ACK**
+		- Server enters *SYN-RECEIVED* state
+		- Client responds with **ACK**
+		- Client enters *ESTABLISHED* state
+		- Server opens connection and enters *ESTABLISHED*
+	- **Header Fields**
+		- Source port
+		- Destination port
+		- Sequence number
+		- Ack number (seq. no. of last segment + 1)
+		- Data length (of segment)
+		- Flags (ACK, SYN, FIN etc)
+		- Window (flow control)
+		- Checksum (calculated by IP payload)
+		- Urgent Pointer
+		- Options (such as max segment size which minimised fragmentation)
+	- **Teardown**
+		- Client sends **FIN** and enters *FIN-WAIT1*
+		- Server responds with **ACK** and enters *CLOSE-WAIT*
+		- Client receives **ACK** *FIN-WAIT2*
+		- Server sends its own **FIN** and enters *LAST-ACK*
+		- Client responds with **ACK** and enters *TIME-WAIT* then closes connection after a period
+		- Server closes connection when it receives the **ACK**
+	- Host can end session abruptly using a reset segment (**RST**)
+- **UDP**
+	- **Properties**
+		- Connectionless and non-guaranteed
+		- 8 byte header
+		- Application layer most control delivery reliability
+		- Broadcast or Multicast
+		- Useful for voice, video, or other time-sensitive data that doesn't require reliability such as multi/broadcast communication (DHCP, router traffic)
+	- **Header Fields**
+		- Source port
+		- Destination port
+		- Message length
+		- Checksum
+- **TCP/UDP Ports**
+	- Applications using TCP/UDP are assigned a port.
+	- IANA assigns ports 0-1023; Vendors can register up 49151
+	- A client application is dynamically assigned an *ephemeral* port > 1024.
+	- Port number + IP address can be combined into a *socket*, a bi-directional pipe for incoming/outgoing data. I.e. *10.155.22.99:1028*
+
+**B. Port Scanners and Protocol Analyzers**
+- **Port Scanners**
+	- `netstat` - deprecated Windows port scanner
+	- `nmap`
+		- Determine whether a host is present (pings ports `80` and `443` (http and https) with a TCP/ACK)
+		- Performs ARP and Neighbour Discovery (ND) on local networks.
+		- Scanning for open ports
+			- `-sS` TCP SYN (half-open scanning)
+			- `-sT` TCP connect  
+			- `-sU` UDP scan  (slow)
+			- `-p` port range
+		- Fingerprinting
+			- probe software `-sV`
+			- `nmap` includes a database of fingerprint signatures in the *common platform enumeration (CPE)* format.
+	- **Protocol Analysers**
+		- Save capture in `.pcap` file
+		- Establish network activity baseline (used for comparison)
+		- Identify active hosts
+		- Monitor bandwidth
+		- Generate frames for testing
+
+**C. Name Resolution Services**
+- **Fully Qualified Domain Names**
+	- *nut.widget.com* 
+		- *nut* - host name
+		- *.widget.com* - domain suffix
+			- *.com* - top level domain
+	- FQDN character limit is 253 (63 for each part). 
+	- Host names must be unique. 
+	- Cannot start with hyphen
+	- Not case sensitive
+	- *Name resolution* maps a FQDN to an IP address, usually using DNS but in the past HOSTS files.
+- **Domain Name System (DNS)**
+	- Hierarchical system of distributed name server databases. 
+		- 13 root servers (.)
+		- Top-level domains (.com, .org...)
+		- No name server has complete info about all domains.
+	- Name Resolution
+		- When a user enters an FQDN query, the stub resolver first checks its local cache. If not found, it queries the local name server. 
+			- The client asks local name server for IP of www.example.com
+			- The local name server checks it DB
+			- If not found, queries root server
+			- Root server refers local name server to a .com name server
+			- Local name server queries .com name server
+			- .com name server refers to an example.com name server
+			- example.com name server, being authoritative, returns the IP
+			- Local name server caches the result and provides IP to client
+			- Client connects to IP
+	- **Iterative**
+		- Name server responds to query with information it has (so client has to query next name server)
+	- **Recursive**
+		- Name server forwards query to next name server
+
+**D. DNS and IPAM Services**
+- **DNS Server Configuration**
+	- Primary
+	- Secondary
+	- Zone Transfer
+	- Authoritative
+	- Cache-only
+	- Non-Authoritative
+	- DNS Spoofing
+	- Interval v External DNS
+	- Zones
+	- Forwarders
+	- Conditional forwarder
+	- Recursive Query
+	- Root hints file
+	- Third Party DNS
+	- Google's public DNS
+- **Resource Records**
+		- Start of Authority
+		- Name Server
+		- Address (A)
+		- AAAA
+		- Canonical (CNAME)
+		- Mail Exchanger (MX)
+		- Service (SRV)
+		- TXT
+		- Pointer (PTR)
+	- Domain Controllers
+	- Sender Policy Framework
+	- DomainKeys Identified Mail
+	- Forward Lookup zones
+	- Reverse Lookup zones
+- **Dynamic DNS (DDNS)**
+	- Allows clients to notify DNS servers that their IP has changed  
+	- `nslookup` on Windows
+	- `dig` on Linux
+- **IP Address Management (IPAM)**
+	- Scans DHCP and DNS servers and logs IP address usage to a DB.
+	- Identify overloaded DHCP scopes
+	- Reveal unauthorized use of IP ranges
+	- Infoblox + Efficient IP

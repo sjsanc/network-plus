@@ -1,0 +1,197 @@
+**A. Explain the Uses of Network Applications**
+- **Server Message Block (SMB)**
+	- SMB allows a machine to share its files and printers with other machines.
+	- UNIX support is provided by *Samba*.
+	- SMB ran as part of *NetBIOS* in legacy systems, on TCP port 139.
+	- SMB runs on TCP port 445 on modern systems.
+	- SMB should only run on local networks. 
+- **Network Time Protocol (NTP)**
+	- Enables synchronisation of time-dependant applications.
+	- UDP port 123
+	- Top level (stratum 1) servers obtain UTC from an accurate clock source (atom clocks)
+	- Stratum 2 servers obtain UTC from multiple stratum 1 servers. 
+	- Everyone else obtains UTC from them.
+	- If an incorrect time is configured, a host may be unable to pass authorisation processes.
+- **Hypertext Transfer Protocol (HTTP)**
+	- TCP port 80 / 443 for HTTPS
+	- Stateless protocol, meaning server does not preserve info about client
+- **Web Servers**
+	- Dedicated servers
+	- Virtual private servers
+	- Cloud hosting
+	- Apache - IIS - nginx - Apache Tomcat - Kestrel
+- **Secure Sockets Layer/Transport Layer Security (SSL/TLS)**
+	- Encrypts HTTP traffic as HTTPS
+	- UDP -> DTLS (Datagram Transport Layer Secure)
+- **HTTPS**
+	- Server is assigned a digital certificate by a certificate authority (CA).
+	- Certificate proves identity of server, assuming authority of the CA.
+	- Server keeps *private key* and freely gives out *public key* (the certificate)
+	- Uses a cipher in the SSL/TLS suite to encrypt a tunnel using the keys.
+- **Untrusted Certificate Issues**
+	- Reasons why a certificate might be untrusted:
+		- The root isn't trusted
+		- It is self-signed
+		- It is misconfigured (eg. mismatched details)
+		- It is being used for a purpose other than stated
+		- It has expired
+		- Time on the server and client is out of sync
+- **Simple Mail Transfer Protocol (SMTP)**
+	- Handles transfer of messages between SMTP servers. 
+	- The sender discovers the recipient IP using the domain name of the recipient address. The domain SMTP server is registered in DNS via an **MX Record**
+	- **Non-Delivery Report (NDR)** 
+		- The receiving server can return a bounce-back for various reasons, such as if the mail-box is full. 
+	- The SMTP server is only able to relay emails between other SMTP servers. 
+	- **Explicit TLS (STARTTLS)** 
+		- Upgrades the connection to TLS
+	- **Implicit TLS (SMTPS)**
+		- Starts the connection with TLS
+	- **Ports**
+		- 25 - relay between SMTP servers
+		- 587 - mail clients to submit emails to SMTP servers
+- **Post Office Protocol (POP)**
+	- Type of Mailbox Access Protocol
+	- Connects over TCP port 110
+	- Downloads emails over cleartext from the SMTP server
+	- Doesn't support syncing across multiple devices as it deletes emails from the server after downloading
+- **Internet Message Access Protocol (IMAP)**
+	- Connects over TCP port 143
+	- Supports permanent connections (rather than connect-download-disconnect dial like POP)
+	- IMAPS over 993
+
+**B. Explain the Uses of Voice Services and Advanced Networking Devices**
+- **Voice Over IP (VOIP)**
+	- One way data e.g. media streaming
+	- Two way data e.g. VoiP or VTC (videoteleconferencing)
+	- VoIP converts analog audio into digital signals, packets of which are sent either over the network or via the phone system if the destination is not also VoIP.
+	- Uses **Session Initiation Protocl (SIP)**
+	- Public = trunk
+- **Private Branch Exchange (PBX)**
+	- **Time Division Multiplexing (TDM)** circuit enables multiplex of voice and data channels over a single cable, typically by a business. Implemented as vendor-specific hardware.
+	- A PBX is an automated switchboard providing a single connection point for an organisation's voice lines. 
+	- PBX provides telefony features such as call waiting, voice mail etc.
+	- Modern PBX are hybrid or fully IP/VoIP. They establish internal connections entirely over VoIP. Can be implemented in software on a Linux server.
+- **VoIP Gateway**
+	- Translates between VoIP and voice-based networks, such as a public switched telephone (PSTN)
+	- An analog version is a Foreign Exchange Office (FXO) gateway.
+	- Gateways can allow phone networks to route through low-cost IP, rather than high-cost international phone networks. 
+	- Gateways can also allow legacy handsets and fax machines to connect over VoIP,  known as a **Foreign Exchange Subscriber (FXE)** gateway.
+- **Real-Time Service Protocols**
+	- Session Control
+	- Data Transport
+	- Quality of Service
+- **Session Initiation Protocl (SIP)**
+	- Session control, not data transport
+	- SIP endpoints are **user agents** (e.g. IP-enabled handsets, web conferencing software)
+	- Each endpoint has a SIP URI
+		- sip:bob.dobbs@comptia.org
+	- Ports 5060 UDP/TCP or 5061 for SIP-TLS
+	- SIP has reliability and re-transmission mechanisms so benefits from UDP.
+	- SIP endpoints can connect in a peer-to-peer fashion but more commonly via a directory intermediate. 
+- **Real-Time Transport Protocol (RTP)**
+	- Enables stream of media data over UDP
+	- Does not guarentee reliability or delivery. That's handled by **RTP Control Protocol (RTCP)**. Each RTP session is paired with an RTCP session on the next highest odd-numbered UDP port (usually 5004 and 5004).
+- **H.323**
+	- Older alternative to SIP.
+	- Terminals, rather than endpoints.
+- **Quality of Service**
+	- **Bursty** describes data sent over relatively short periods with gaps in between, covering uses such as web browsing or downloads.
+	- **Latency** describes the time it takes for packet to reach recipient, in ms.
+	- **Jitter** describes the variation in the delay it takes for a packet to reach recipient
+	- Latency and jitter are unimportant for bursty data, buy are important for real-time applications where data ordering affects performance, such as games or video.
+	- VoIP is expected to have an RRT (round-trip time) of less than 300ms, and jitter of 30ms, and 1% packet loss.
+	- On a local network, latency and jitter can be caused by congestion. A QoS mechanism can fix this. In a QoS mechanism, packets are prioritised according to their application, such as bursty or real-time.
+- **DiffServ**
+	- Differential Service
+	- IP Layer 3 service tagging mechanism
+	- Uses `Type of Field` IPv4 (`Traffic Class` IPv6) header and renames it to `Differentiated Services`.
+	- Populates the field with a 6-byte DiffServ Code Point (DSCP)
+	- Packets with the same DSCP are referred to as **Behaviour Aggregates** and allocated the same **Per-Hop Behaviour** (PHB)
+	- IEEE 802.1p can be used Layer 2 to tag traffic over a switch or WAP, using a 3-bit priority field. 
+	- 3 typical traffic types:
+		- Best Effort
+		- Assured Forwarding
+		- Expedited Forwarding (highest priority)
+- **Class of Service**
+	- Class of service such as DiffServ differs from QoS in that it only allows tagging to identify packet classes, whereas QoS allows fine-grained control over traffic parameters.
+	- Class of service cannot fix congestion issues, whereas QoS can.
+- **Traffic Shaping**
+	- Planes
+		- Control plane
+		- Data plane
+		- Management plane
+	- Traffic policing is a simpler policy than shaping and will simply drop packets that exceed configuration thresholds (tail drop).
+	- ISPs can utilise traffic shaping to offer premium services, such as ensuring a prioritisation of low-latency game traffic, or by limiting high-throughput activities such as file sharing during peak times. 
+- **Load Balancers**
+	- Common Address Redundancy Protocol (CARP)
+	- Gateway Load Balancing Protocol (GLBP) (Cisco)
+	- **Types**
+		- Layer 4 - decisions based on IP address and TCP/UDP ports.
+		- Layer 7 - decisions based on application data
+	- **Services**
+		- Configurable load
+		- Prioritisation
+		- TCP Offload
+		- SSL Offload
+		- Caching
+		- URL writing
+	- Often implemented as advanced switching devices rather than in software due to performance demands
+- **Multiplayer Switches**
+	- TODO...
+
+**C. Explain the Uses of Virtualisation and Network Storage Services**
+- **Virtualisation**
+	- **Terms**
+		- *Host* - the platform that hosts the virtual environment
+		- *Hypervisor* - manages the virtual environment
+		- *Guest VM* - OS installed in the virtual environment
+	- **Benefits**
+		- *Server Consolidation* - multiple software instances can run on the same hardware
+		- *Virtual Desktop Infrastructure (VDI)* - provision client desktops as VMs and RDP into them
+		- *Application Virtualisation* - applications are run on the server and streamed to a client
+	- **Hypervisor Types**
+		- *Type II* - hypervisor is installed in a host OS (like VMWare)
+		- *Type I* - installed on the metal without an intermediary (HyperV, Xen)
+	- **Virtual Switches**
+		- The hypervisor can create virtual switches to allow VMs to connect to the host NIC.
+	- **Virtual Firewall**
+		- *Bridged Mode* - layer 2 and connects network segments
+		- *Hypervisor Mode* - layer 3 and can alter IP addresses
+- **Storage Virtualisation**
+	- Abstracting and pooling storage resources across a network. 
+	- Improves *data de-duplication* and enables *tiered storage hierarchies*.
+	- *Nearline storage* - "slow" hard disk media
+- **Network Storage Types**
+	- *Direct-attached storage* - storage connected directly to the server. Can be inefficient
+	- *Network-attached storage* - file-level storage accessible over a network
+		- File-based protocols like *Network File System (NFS), Server Message Block (SMB), \Common Internet File System (CIFS), File Transfer Protocol (FTP)*
+	- *Storage-area networks* - block-level storage over a network
+		- Useful for databases
+		- Can only be accessed by servers
+- **Fibre Channel / Switched Fabric (FC/SF)**
+- **Fibre Channel over Ethernet**
+- **Jumbo Frames**
+- **InfiniBand**
+- **iSCSI**
+
+**D. Summarise the Concepts of Cloud Services**
+- **Cloud Computing**
+	- *Rapid Elasticity*
+	- *On-Demand*
+	- *Pay-Per-Use*
+	- *Measured Service*
+	- *Resource Pooling*
+- **Models**
+	- *Public / Multi-tenant*
+	- *Hosted Private*
+	- *Private*
+	- *Community*
+	- *Hybrid*
+- **Types**
+	- *IaaS*
+	- *SaaS*
+	- *PaaS*
+- **Cloud Access Security Broker (CASB)**
+	- Software for mediating access to cloud services
+	- Blue Coat (Symantec), SkyHigh (MacAffee)
+	- Enables SSO, scans for malware, monitor user activity, mitigate data exfiltration
