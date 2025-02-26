@@ -8,7 +8,7 @@ https://partners.comptia.org/docs/default-source/resources/comptia-network-n10-0
 		5. Sessions
 		6. Presentation
 		7. Application
-	2. Appliances
+	2. [Appliances](https://github.com/sjsanc/network-plus/blob/master/1_networking_concepts.md#appliances)
 		1. Physical & Virtual
 			1. Router
 			2. Switch
