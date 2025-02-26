@@ -27,7 +27,7 @@ https://partners.comptia.org/docs/default-source/resources/comptia-network-n10-0
 			2. Quality of Service (QoS)
 			3. Time-to-Live (TTL)
 	3. Cloud Concepts
-		1. Network Functions Virtualization (NFS)
+		1. Network Functions Virtualisation (NFV)
 		2. Virtual Private Cloud (VPC)
 		3. Network Security Groups
 		4. Network Security Lists
@@ -62,7 +62,7 @@ https://partners.comptia.org/docs/default-source/resources/comptia-network-n10-0
 			10. Network Time Protocol (NTP)
 			11. Simple Network Management Protocol (SNMP)
 			12. Lightweight Directory Access Protocol (LDAP)
-			13. Hypertext Transfer Protocol (HTTPS)
+			13. Hypertext Transfer Protocol Secure (HTTPS)
 			14. Server Message Block (SMB)
 			15. Syslog
 			16. Simple Mail Transfer Protocol Secure (SMTPS)

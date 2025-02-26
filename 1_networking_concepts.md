@@ -1,0 +1,189 @@
+1. **OSI Model**
+- Physical
+	- Bits (PDU)
+- Data Link
+	- Frames (PDU)
+- Network
+	- Packets (PDU)
+- Tansport
+	- Segments (TCP) / Datagram (UDP)
+- Session
+- Presentation
+- Application
+
+**Appliances**
+- **Physical & Virtual**
+	- *Router*
+		- Routes packets between networks (L3)
+		- Handles addressing and routing tables
+		- Connects over LAN and WAN
+	- *Switch*
+		- Forwards frames within a network (L2)
+		- Uses MAC addressing and VLAN for traffic segmentation
+		- Connects computers within a local network, such as an office
+	- *Intrusion Detection System (IDS)*
+		- Monitors network traffic for suspicious activity
+		- Signature-based or anomaly-based
+		- E.g. detecting port scanners or malware
+	- *Load Balancer*
+		- Distributes network traffic across servers
+		- Increases availability and reliability of services
+		- Either at Transport (L4) or Application (L7)
+	- *Proxy*
+		- Intermediary between a client and server
+		- Used for caching, content filtering, anonymity, security
+		- E.g. a web proxy for hiding client IP address
+	- *Network-attached Storage (NAS*
+		- File-level shared storage over the network
+		- **SMB** or **NFS** protocols
+	- *Storage Area Network (SAN)*
+		- Provides block-level storage to servers
+		- **Fibre Channel**, **iSCSI** or **FCoE** protocols
+	- *Wireless Access Point (WAP*
+		- Connects wireless devices to a network
+		- Standards: **802.11**a/b/g/n/ac
+	- *Wireless Controller*
+		- Manages multiple wireless access points in a large network
+- **Applications**
+	- *Content Delivery Network (CDN)*
+		- Distributes content delivery across multiple servers
+		- Improves performance of web servers by enabling geolocation
+- **Functions**
+	- *Virtual Private Network (VPN)*
+		- Provides secure connection over a public network (i.e. internet)
+		- E.g. accessing corporate network over VPN tunnel
+	- *Quality of Service (QoS)*
+		- Traffic shaping and policing
+		- Prioritise certain traffic (e.g. VoIP)
+		- Minimise delay (latency) and variation (jitter) of packets
+		- **Models**
+			- *DiffServ*
+				- Differentiated Service
+				- Prioritise based on classes in the IP header
+			- *IntServ*
+				- Integrated Service
+				- Guarantees a level of service
+	- *Time-to-Live (TTL)*
+		- IP packet header field that decreases by 1 for each hop (router)
+		- Limits the lifespan of a packet over the network to prevent permanent circulation
+
+**Cloud Concepts**
+- *Network Functions Virtualisation (NFV)*
+	- Network services (firewalls, routers, LB etc) are visualised via software
+	- Decouples network functions from hardware
+- *Virtual Private Cloud (VPC)*
+	- A logically isolated network in the cloud
+	- IP addresses, subnets, routing tables, network gateways
+- *Network Security Groups*
+	- Used to control outbound/inbound traffic to network interfaces (NIC) or virtual machines in a VPC.
+	- Allow or deny traffic based on IP address, ports and protocols
+- *Network Security Lists*
+	- Like NSGs but applied at the subnet level. 
+- **Cloud Gateways**
+	- *Internet Gateway*
+		- Enables communication between instances in a VPC and the internet. 
+	- *Network Address Translation (NAT) Gateway*
+		- Enables private subnets to access the internet without exposing themselves
+- **Cloud Connectivity Options**
+	- *VPN*
+		- Enables secure connection between on-premise network and a cloud environment over the internet.
+	- *Direct Connect*
+		- Dedicated, private connection on-premise and datacenter
+- **Deployment Models**
+	- *Public*
+		- Cloud resources are shared between multiple tenants
+	- *Private*
+		- Cloud resources belong to a single tenant
+	- *Hybrid*
+		- Utilising both models. 
+		- E.g. sensitive data stored on a private cloud
+- **Service Models**
+	- *Software as a Service (SaaS)*
+		- Provides application software over the internet
+		- E.g. Gmail
+	- *Infrastructure as a Service (IaaS)*
+		- Provides infrastructure (VM, storage, networking) over the internet
+		- E.g. AWS EC2
+	- *Platform as a Service (PaaS)*
+		- Provides hardware over the network with minimum abstraction
+		- E.g. Google App Engine
+- *Scalability*
+	- The ability to expand or reduce computing capability
+- *Elasticity*
+	- The speed at which expansion occurs
+- *Multi-tenancy*
+	- A cloud configuration where a single physical volume is shared between multiple tenants as isolated logical volumes.
+
+**Common Ports, Protocols, Services and Traffic**
+- **Protocols**
+	- *File Transfer Protocol (FTP)*
+		- Port 21 (command) / 20 (data)
+		- Transfers files between client and server.
+	- *Secure File Transfer Protocol (SFTP)*
+		- Port 22
+		- FTP with SSH for encryption.
+	- *Secure Shell (SSH)*
+		- Port 22
+		- Secure remote login and command execution. 
+	- *Telnet*
+		- Port 23
+		- Text-based remote access. Insecure.
+	- *Simple Mail Transfer Protocol (SMTP) (STMPS)*
+		- Port 25 (465 for SMTPS)
+		- Send emails between client and server
+		- Typically outgoing
+	- *Domain Name System (DNS)*
+		- Port 53
+		- Resolves domain names (www.example.com) from IP address
+	- *Dynamic Host Configuration Protocol (DHCP)*
+		- Port 67 (server) / 68 (client)
+		- Assigns IP addresses to devices on a network
+	- *Trivial File Transfer Protocol (TFTP)*
+		- Port 69
+		- Insecure FTP using UDP
+		- Typically used for transferring configs to network devices
+	- *Hypertext Transfer Protocol (HTTP) (HTTPS*
+		- Port 80 (443 for HTTPS)
+		- Web traffic
+	- *Network Time Protocol (NTP)*
+		- Port 123
+		- Synchronises clocks over a network. 
+		- Ensures all devices have the same time.
+	- *Simple Network Management Protocol (SNMP)*
+		- Port 161 (request) / 162 (trap)
+		- Monitors and manages devices on a network by querying for for information (device status, usage, etc)
+		- Useful for troubleshooting network devices like routers
+	- *Lightweight Directory Access Protocol (LDAP) (LDAPS)*
+		- Port 389 (636 for LDAPS)
+		- Used to maintain distributed directory information services, such as credentials and permissions 
+	- *Server Message Block (SMB)*
+		- Port 445
+		- Network file sharing protocol that allow applications to read and write files
+		- Used by printers, Windows networks
+	- *Syslog*
+		- Port 514 (UDP)
+		- Used for sending notification messages from devices (like routers) to a centralised logging server.
+	- *Structured Query Language (SQL) Server*
+		- Port 1433
+		- SQL Server Database
+	- *Remote Desktop Protocol (RDP)*
+		- Port 3389
+		- Proprietary Microsoft protocol for remote desktop access
+	- *Session Initiation Protocol (SIP)*
+		- Port 5060 (5061 for SIPS)
+		- Signalling protocol for maintaining sessions such as voice, video and messaging
+		- Used in VoIP (Zoom, Skype etc)
+- **Internet Protocol (IP)**
+	- *Internet Control Message Protocol (ICMP)*
+	- *Transmission Control Protocol (TCP)*
+	- *User Datagram Protocol (UDP)*
+	- *Generic Routing Encapsulation (GRE)*
+	- **Internet Protocol Security (IPSec)**
+		- *Authentication Header (AH)*
+		- *Encapsulating Security Payload (ESP)*
+		- *Internet Key Exchange (IKE)*
+- **Traffic Types**
+	- *Unicast*
+	- *Multicast*
+	- *Anycast*
+	- *Broadcast*
