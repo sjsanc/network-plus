@@ -11,8 +11,8 @@ Study notes for the CompTIA Network+ exam.
 		5. Sessions
 		6. Presentation
 		7. Application
-	2. Appliances
-		8. Physical & Virtual
+	2. [Appliances](https://github.com/sjsanc/network-plus/blob/master/1_networking_concepts.md#appliances)
+		1. Physical & Virtual
 			1. Router
 			2. Switch
 			3. Firewall
@@ -23,13 +23,13 @@ Study notes for the CompTIA Network+ exam.
 			8. Storage Area Network (SAN)
 			9. Wireless Access Point (WAP)
 			10. Wireless Controller
-		9. Applications
+		2. Applications
 			1. Content Delivery Network (CDN)
-		10. Functions
+		3. Functions
 			2. Virtual Private Network (VPN)
 			3. Quality of Service (QoS)
 			4. Time-to-Live (TTL)
-	3. Cloud Concepts
+	3. [Cloud Concepts](https://github.com/sjsanc/network-plus/blob/master/1_networking_concepts.md#cloud_concepts)
 		1. Network Functions Virtualisation (NFV)
 		2. Virtual Private Cloud (VPC)
 		3. Network Security Groups
@@ -51,8 +51,8 @@ Study notes for the CompTIA Network+ exam.
 		9. Scalability
 		10. Elasticity
 		11. Multi-tenancy
-	4. Common Ports, Protocols, Services and Traffic
-		12. Protocols
+	4. [Common Ports, Protocols, Services and Traffic](https://github.com/sjsanc/network-plus/blob/master/1_networking_concepts.md#common-ports-protocols-services-traffic)
+		1. Protocols
 			1. File Transfer Protocl (FTP)
 			2. Secure File Transfer Protocol (SFTP)
 			3. Secure Shell (SSH)
@@ -73,7 +73,7 @@ Study notes for the CompTIA Network+ exam.
 			18. Structure Query Language (SQL) Server
 			19. Remote Desktop Protocol (RDP)
 			20. Sessions Initiation Protocol (SIP)
-		13. Internet Protocol (IP) Type
+		2. Internet Protocol (IP) Type
 			1. Internet Control Message Protocol (ICMP)
 			2. Transmission Control Protocol (TCP)
 			3. User Datagram Protocol (UDP)
@@ -82,12 +82,12 @@ Study notes for the CompTIA Network+ exam.
 				1. Authentication Header (AH)
 				2. Encapsulating Security Payload (ESP)
 				3. Internet Key Exchange (IKE)
-		14. Traffic Types
+		3. Traffic Types
 			6. Unicast
 			7. Multicast
 			8. Anycast
 			9. Broadcast
-	5. Transmission Media and Transceivers
+	5. [Transmission Media and Transceivers](https://github.com/sjsanc/network-plus/blob/master/1_networking_concepts.md#transmission-media-transceivers)
 		1. Wireless
 			1. 802.11 
 			2. Cellular
@@ -114,65 +114,65 @@ Study notes for the CompTIA Network+ exam.
 			5. Registered jack (RJ)11
 			6. RJ45
 			7. F-type
-		6. Network Topologies, Architectures and Types
-			8. Mesh
-			9. Hybrid
-			10. Star/hub and spoke
-			11. Spine and leaf
-			12. Point to point
-			13. Three-tier hierarchical model
-				1. Core
-				2. Distribution
-				3. Access
-			14. Collapsed Core
-			15. Traffic Flows
-				4. North-south
-				5. East-west
-		7. IPv4 Network Addresses
-			1. Public vs Private
-				1. Automatic Private IP Addressing (APIPA)
-				2. RFC1918
-				3. Loopback/localhost
-			2. Subnetting
-				4. Variable Length Subnet Mask (VLSM)
-				5. Classless Inter-domain Routing (CIDR)
-			3. IPv4 Address Classes
-				1. Class A
-				2. Class B
-				3. Class C
-				4. Class D
-				5. Class E
-		8. Modern Network Environments
-			4. Software-defined network (SND) and Software-defined wide area network (SD-WAN)
-				6. Application aware
-				7. Zero-touch provisioning
-				8. Transport agnostic
-				9. Central policy management
-			5. Virtual Extensible Local Area Network (VXLAN)
-				10. Data centre interconnect (DCI)
-				11. Layer 2 encapsulation
-			6. Zero trust architecture (ZTA)
-				12. Policy-based authentication
-				13. Authorisation
-				14. Least Privilege Access
-			7. Secure Access Secure Edge (SASE) / Security Service Edge (SSE)
-			8. Infrastructure as Code (IaC)
-				15. Automation
-					1. Playbooks/templates/reusable tasks
-					2. Configuration drift/compliance
-					3. Upgrades
-					4. Dynamic Inventories
-				16. Source Control
-					1. Version Control
-					2. Central Repository
-					3. Conflict Identification
-					4. Branching
-			9. IPv6 Addressing
-				17. Mitigating address exhaustion
-				18. Compatibility requirements
-					1. Tunnelling 
-					2. Dual stack
-					3. NAT64
+	6. [Network Topologies, Architectures and Types](https://github.com/sjsanc/network-plus/blob/master/1_networking_concepts.md#network-topologies-architecture-types)
+		1. Mesh
+		2. Hybrid
+		3. Star/hub and spoke
+		4. Spine and leaf
+		5. Point to point
+		6. Three-tier hierarchical model
+			1. Core
+			2. Distribution
+			3. Access
+		7. Collapsed Core
+		8. Traffic Flows
+			4. North-south
+			5. East-west
+	7. [IPv4 Network Addresses](https://github.com/sjsanc/network-plus/blob/master/1_networking_concepts.md#ipv4-network-addresses)
+		1. Public vs Private
+			1. Automatic Private IP Addressing (APIPA)
+			2. RFC1918
+			3. Loopback/localhost
+		2. Subnetting
+			4. Variable Length Subnet Mask (VLSM)
+			5. Classless Inter-domain Routing (CIDR)
+		3. IPv4 Address Classes
+			6. Class A
+			7. Class B
+			8. Class C
+			9. Class D
+			10. Class E
+	8. [Modern Network Environments](https://github.com/sjsanc/network-plus/blob/master/1_networking_concepts.md#modern-network-environments)
+		1. Software-defined network (SND) and Software-defined wide area network (SD-WAN)
+			1. Application aware
+			2. Zero-touch provisioning
+			3. Transport agnostic
+			4. Central policy management
+		2. Virtual Extensible Local Area Network (VXLAN)
+			5. Data centre interconnect (DCI)
+			6. Layer 2 encapsulation
+		3. Zero trust architecture (ZTA)
+			7. Policy-based authentication
+			8. Authorisation
+			9. Least Privilege Access
+		4. Secure Access Secure Edge (SASE) / Security Service Edge (SSE)
+		5. Infrastructure as Code (IaC)
+			10. Automation
+				1. Playbooks/templates/reusable tasks
+				2. Configuration drift/compliance
+				3. Upgrades
+				4. Dynamic Inventories
+			11. Source Control
+				1. Version Control
+				2. Central Repository
+				3. Conflict Identification
+				4. Branching
+		6. IPv6 Addressing
+			12. Mitigating address exhaustion
+			13. Compatibility requirements
+				1. Tunnelling 
+				2. Dual stack
+				3. NAT64
 2. Network Implementation
 	6. Routing Technologies
 		1. Static routing

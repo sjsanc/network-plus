@@ -67,7 +67,7 @@
 		- IP packet header field that decreases by 1 for each hop (router)
 		- Limits the lifespan of a packet over the network to prevent permanent circulation
 
-**Cloud Concepts**
+**[Cloud Concepts](#cloud_concepts)**
 - *Network Functions Virtualisation (NFV)*
 	- Network services (firewalls, routers, LB etc) are visualised via software
 	- Decouples network functions from hardware
@@ -114,7 +114,7 @@
 - *Multi-tenancy*
 	- A cloud configuration where a single physical volume is shared between multiple tenants as isolated logical volumes.
 
-**Common Ports, Protocols, Services and Traffic**
+**[Common Ports, Protocols, Services and Traffic](#common-ports-protocols-services-traffic)**
 - **Protocols**
 	- *File Transfer Protocol (FTP)*
 		- Port 21 (command) / 20 (data)
@@ -175,15 +175,319 @@
 		- Used in VoIP (Zoom, Skype etc)
 - **Internet Protocol (IP)**
 	- *Internet Control Message Protocol (ICMP)*
+		- Used for error reporting and diagnostics (`ping` `traceroute`).
+		- Does not carry user data
 	- *Transmission Control Protocol (TCP)*
+		- Connection-oriented protocol for reliable delivery of packets with error-checking.
+		- 3-way handshake: SYN SYN-ACK ACK
 	- *User Datagram Protocol (UDP)*
+		- Connectionless protocol without guarantee for delivery or order.
+		- Used in streaming, VoIP, gaming
 	- *Generic Routing Encapsulation (GRE)*
+		- Cisco tunnelling protocol used for encapsulating packets over different networks.
+		- Used in VPNs.
 	- **Internet Protocol Security (IPSec)**
+		- A suite of protocols for securing IP communication
 		- *Authentication Header (AH)*
+			- Port 51
+			- Integrity and authentication but no encryption
 		- *Encapsulating Security Payload (ESP)*
+			- Port 50
+			- Encryption, integrity and authentication
 		- *Internet Key Exchange (IKE)*
+			- Port 500 UDP
+			- Manages exchange of encryption keys over IPSec tunnels
 - **Traffic Types**
 	- *Unicast*
+		- One-to-one communication between sender and receiver
+		- E.g. browsers, email
 	- *Multicast*
+		- One-to-many between sender and subscribers
+		- Uses class D IP addresses 224.0.0.0-239.255.255.255
+		- E.g. video conferencing
 	- *Anycast*
+		- One-to-nearest, where closest responds
+		- E.g. DNS, CDNs
 	- *Broadcast*
+		- One-to-all
+		- Limited to local subnet, not forwarded by routers
+		- Uses 255.255.255.255 on IPv4
+
+**[Transmission Media and Transceivers](#transmission-media-transceivers)**
+- **Wireless**
+	- **802.11**
+		- 802.11 is a family of wifi standards. 
+		- Higher Ghz means shorter range but faster speeds.
+		- (1999) - *802.11a* - 5Ghz - 54Mbps - short range
+		- (1999) - *802.11b* - 2.4Ghz - 11Mbps - longer range
+		- (2003) - *802.11g* - 2.4Ghz - 54Mbps
+		- (2009) - *802.11n* - 2.5/5Ghz - 600Mbps + MIMO
+		- (2013) - *802.11ac* - 5Ghz - 6.93Gbps + MU-MIMO
+		- (2019) - *Wifi6 / 802.11.ax* - 2.5/5Ghz - 9.6Gbps + OFDMA
+		- (Upcoming) - *Wifi7 / 802.11be* - 2.5/5/6Ghz
+		- *Multiple-input Multiple-output (MIMO)*
+			- Using multiple antennas for better performance
+		- *Channel bonding*
+			- Combining multiple channels to increase bandwidth
+	- **Cellular**
+		- Enables mobile devices to talk through cell towers.
+		- *Generations*
+			- (1980s) - *1G* - analog networks, poor security
+			- (1990s) - *2G* - digital, SMS/MMS + GSM + CDMA
+			- (2000s) - *3G* - mobile internet, WCDMA/HSPA
+			- (2010s) - *4G LTE* - broadband (100Mbps-1Gbps)
+			- (2020s) - *5G* - 10Gbps
+		- *Global System for Mobile Communication (GSM)*
+		- *Code Division for Multiple Access (CDMA)*
+		- *Long Term Evolution (LTE)*
+	- **Satellite**
+		- Long-range wireless networking using orbiting satelites
+		- *Geostationary Earth Orbit (GEO)*
+			- 35k KM above Earth. Stationary. TV and broadband.
+		- *Medium Earth Orbit (MEO)*
+			- 2-35k KM, low latency, used for GPS
+		- *Low Earth Orbit (LEO)*
+			- 500-2000 KM, used for Starlink and Iridium
+- **Wired**
+	- *802.3*
+		- IEEE Ethernet standard.
+		- Uses *Carrier Sense Multiple Access with Collision Detection (CSMA/CD)* to manage transmission in half-duplex networks.
+		- Modern ethernet is mostly full-duplex (no collision)
+		- *10BASE-T* - 10mbps
+		- *100BASE-TX* - Fast Ethernet - 100mbps
+		- *1000BASE-T* - Gigabit Ethernet - 1gbps
+		- *10GBASE-T* - 10gbps
+		- *40GBASE-T* - 40gbps
+		- *100GBASE-T* - 100gbps
+	- *Single-mode fibre*
+		- Single beam of light (laser based)
+		- 100km distance
+		- Small core 8-10nm
+		- Used in ISP backbones
+	- *Multi-mode fibre*
+		- Multiple beams of light (LED based)
+		- Shorter 400m to 2km distance
+		- Larger core 50-62.5nm
+		- Used in LANs and datacenters
+	- *Direct attach copper (DAC)*
+		- High-speed, short distance cable with integrated transceivers
+		- Used in datacenters and high-performance computing
+		- *Passive DAC* - short distance, low power
+		- *Active DAC* - longer distance, signal boosting
+		- Common in 10G, 25G, 40G and 100G Ethernet
+	- *Coaxial cable*
+		- Used for cable TV, broadband internet
+		- Centre conductor, insulating layer, shielding, outer jacket
+		- *RG-6* - modern broadband, satellite TV
+		- *RG-59* - older, low frequency
+		- *RG-11* - longer distance coaxial runs
+		- Uses F-Type connectors
+	- **Cable speeds**
+		- **Twisted-Pair Ethernet (Copper)**
+			- *Cat5e* - 1Gbps (100m)
+			- *Cat6* - 10Gbps (55m)
+			- *Cat6a* - 10Gbps (100m)
+			- *Cat7/Cat8* - 40-100Gbps (short)
+	- *Plenum vs non-plenum cable*
+		- *Plenum cable* is 
+			- Used in plenum spaces (spaces designed for airflow)
+			- Fire-resistant, low-smoke jacket
+			- Required in air-ducts and HVAC
+			- More expensive
+		- *Non-plenum cable* (riser)
+			- Less fire-resistant
+			- Used in walls and riser shafts (vertical runs)
+			- Cheaper but restricted
+- **Transceivers**
+	- A transceiver performs signal conversion
+	- *Ethernet*
+		- Converts electrical signals (copper) to optical signals (fibre)
+		- SFP/QSFP/BASE-T (twisted-pair)
+	- *Fibre Channel (FC)*
+		- High-speed network protocol for storage area networks (SANs)
+		- 1-128Gbps+
+		- Uses fibre optic transceivers
+		- Can be used over optical fibre or copper (Twinax/DAC)
+- **Form Factors**
+	- *Small form-factor pluggable (SFP)*
+		- Hot-swappable transceiver module for fibre and ethernet
+		- SFP (1Gbps)
+		- SFP+ (10Gbps)
+		- SFP28 (25Gbps)
+	- *Quad small form-factor pluggable (QSFP)*
+		- Larger module, supports multiple lanes
+		- QSFP (40Gbps)
+		- QSFP28 (100Gbps)
+		- QSFP-DD (400Gbps)
+		- Used in data-centers and backbones
+- **Connector Types**
+	- *Subscriber connector (SC)*
+		- Square-shaped fibre optic connector
+		- Push-pull design
+		- Used in telecom and datacenters
+	- *Local connector (LC)*
+		- Smaller fibre optic connector than SC
+		- More common in modern fibre networking
+		- Used in SFP modules, switches and SANs
+	- *Multi-fibre push on (MPO)*
+		- Used in high-density fibre connections
+		- Supports 12, 24, 48 fibres
+		- Used in 100G/400G backbone networks
+	- *Registered jack (RJ)11*
+		- 4-6 pin connector
+		- Used in telephone lines and DSL connections
+	- *RJ45*
+		- 8P8C connect (8 pins 8 conductors)
+		- Used for Ethernet (Cat5e, etc...)
+	- *F-Type*
+		- Coaxial cable connector
+		- Used in cable TV, satellite TV
+
+- **[Network Topologies, Architectures and Types](#network-topologies-architecture-types)**
+	- *Mesh*
+		- A mesh network is a topology where each device connects to multiple other nodes, providing redundancy and fault tolerance
+		- *Full Mesh*
+			- Every node connects to directly to every other node.
+			- Used in critical infrastructure (financial networks, military)
+	- *Hybrid*
+		- A combination of multiple topologies
+		- Used in large networks with variable requirements
+	- *Star/hub and spoke*
+		- Devices connect to a central hub
+		- Low fault tolerance
+		- Used in LANs
+	- *Point to point*
+		- Direct connection between two lines.
+		- Leased lines (T1, E1, Fibre circuits)
+		- Data-centre interconnects
+	- **Three-tier hierarchical model**
+		- A structured network design model used in enterprise networks that separates functions into three layers.
+		- *Core*
+			- High-speed backbones that connects distribution layers
+			- Optimised for fast packet switching, not security
+		- *Distribution*
+			- Aggregates traffic from access switches before forwarding to the core
+			- Implements routing, QoS, security and policy enforcement
+			- Uses Layer 3 switches
+		- *Access*
+			- Connects to end-user devices (PCs, phones)
+			- Uses Layer 2 switches with VLAN support
+			- Implements PoE for devices like VoIP phones and wireless APs.
+	- **Collapsed core**
+		- Simplified model that merges the Core and Distribution layers. 
+		- Layer 3 switches are used with high-speed interconnects.
+	- **Traffic flows**
+		- Traffic flows in predictable patterns
+		- *North-South*
+			- Traffic between data-centres and external networks.
+			- E.g. user accessing a website or cloud service from outside the network
+		- *East-west*
+			- Traffic between devices within the network
+			- E.g. server to server communication
+
+- **[IPv4 Network Addresses](#ipv4-network-addresses)**
+	- **Public vs Private**
+		- *Public addresses* 
+			- Assigned by the IANA (Internet Assigned Numbers Authority) and must be globally unique.
+			- Requires network address translation (NAT) for private networks to access the internet.
+		- *Private addresses (RFC1918)* 
+			- Reserved for internal networks and aren't routable from the internet.
+			- Divided into range classes
+		- *Automatic Private IP Addressing (APIPA)*
+			- Range: `169.254.0.0` (subnet mask `255.255.0.0`)
+			- Assigned when DHCP is unavailable
+			- Allows communication but no internet access
+		- *Loopback/localhost*
+			- `127.0.0.0` - `127.255.255.255`
+			- `127.0.0.1` is used for self-testing
+			- Does not leave the device
+	- **Subnetting**
+		- Subnetting divides an IP network into smaller logical networks
+		- *Variable Length Subnet Mask (VLSM)*
+			- Allows subnets of different sizes within the same network
+			- Reduces waste of IP addresses
+			- Used in modern routing protocols (OSPF, EIGRP, BGP)
+		- *Classless Inter-domain Routing (CIDR)*
+			- Replaces class-based addressing
+			- Uses prefix notation (`/24`, `/16`)
+			- E.g. `192.168.1.0/24` (256 addresses, `255.255.250.0` mask)
+			- Prevents IPv4 exhaustion
+	- **IPv4 Address Classes**
+		- *Class A*
+			- `1.0.0.0` - `126.255.255.255`
+			- Subnet mask: `255.0.0.0/8`
+			- 16 million hosts
+			- Large organisations
+		- *Class B*
+			- `128.0.0.0` - `191.255.255.255`
+			- Subnet mask: `255.255.0.0/16`
+			- 65,536 hosts
+			- Medium sized networks
+		- *Class C*
+			- `192.0.0.0` - `223.255.255.255`
+			- Subnet mask: `255.255.255.0/24`
+			- 256 hosts per network
+			- Small businesses, home networks
+		- *Class D*
+			- `224.0.0.0` - `239.255.255.255`
+			- Multicast traffic
+			- Not assigned to hosts
+
+- **[Modern Network Environments](#modern-network-environments)**
+	- **Software-defined (wide area) network (SND/SD-WAN)**
+		- *Application-aware*
+			- SD-WAN can prioritise traffic based on application type, ensuring QoS
+		- *Zero-touch provisioning*
+			- New network devices automatically configure themselves when connected
+		- *Transport agnostic*
+			- Works over MPLS, broadband, LTE, satellite etc
+		- *Central policy management*
+			- Network policies are defined centrally then pushed to all devices
+			- Enhances security and compliance
+	- **Virtual Extensible Local Area Network (VXLAN)**
+		- Layer 2 over Layer 3 encapsulation technology that enables large-scale virtual networks
+		- *Data centre interconnect (DCI)*
+			- Allows multiple data-centres to operate as one network
+		- *Layer 2 encapsulation*
+			- Encapsulates Ethernet frames as UDP datagrams
+			- Provides 10 million+ VLANs compared to traditional 4096 limit
+	- **Zero trust architecture (ZDA)**
+		- A security model where no user device is automatically trusted, even inside a network
+		- *Policy-based authentication*
+			- Access is granted based on user identity, location, device type and risk level
+		- *Authorisation*
+			- Users and devices only get access they need based on policies
+		- *Least Privilege Access*
+			- Limits access to only necessary resources, reducing attack surface
+	- **Secure Access Secure Edge (SASE) / Security Service Edge (SSE)**
+		- *SASE* combines networking (SD-WAN) and security services (firewall, Zero Trust, CASB, etc) into a cloud-based solution
+		- *SSE* focuses only on security services
+		- Provides secure remote access, content filtering and data loss protection
+	- **Infrastructure as Code (IaC)**
+		- Automates network and infrastructure provisioning using code-based configurations
+		- **Automation**
+			- *Playbooks/templates/resuable tasks*
+				- Predefined configurations to automate deployments
+				- Ansible, Puppet, Chef, Terraform
+			- *Configuration drift/compliance*
+				- Detects and fixes deviations from baseline configurations
+			- *Upgrades*
+				- Automates patching and software updates
+			- *Dynamic Inventories*
+				- Keeps track of network and cloud resources dynamically
+		- **Source Control**
+			- *Version Control*
+			- *Central Repository*
+			- *Conflict Identification*
+			- *Branching*
+	- **IPv6 Addressing**
+		- Successor to IPv4, designed to solve address exhaustion and support modern networks.
+		- *Mitigating address exhaustion*
+			- IPv6 provides 340 undecillion addresses (2^128)
+		- **Compatibility requirements**
+			- *Tunnelling*
+				- Encapsulating IPv6 packets in IPv4 to maintain compatibility
+			- *Dual stack*
+				- Running both protocols simultaneously
+			- *NAT64*
+				- Translates IPv6 traffic to communicate with IPv4-only devices
