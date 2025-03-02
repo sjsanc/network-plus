@@ -13,14 +13,23 @@
 
 **[Appliances](#appliances)**
 - **Physical & Virtual**
+	- *Hub*
+		- A device that repeats incoming traffic to all ports.
+		- Has no knowledge of devices beyond connections tatus.
 	- *Router*
 		- Routes packets between networks (L3)
 		- Handles addressing and routing tables
 		- Connects over LAN and WAN
+		- Router connects two networks (or subnets). It defines the network gateway boundary.
 	- *Switch*
-		- Forwards frames within a network (L2)
 		- Uses MAC addressing and VLAN for traffic segmentation
-		- Connects computers within a local network, such as an office
+		- Connects computers within a local network, such as an office.
+		- *Layer 2*
+			- Most common type
+			- Uses MAC addresses to forward data packets
+		- *Layer 3*
+			- Uses IP addresses to forward data frames
+			- Allows inter-VLAN routing using switch virtual interfaces (SVIs), which create default gateways.
 	- *Intrusion Detection System (IDS)*
 		- Monitors network traffic for suspicious activity
 		- Signature-based or anomaly-based
@@ -403,6 +412,8 @@
 			- Does not leave the device
 	- **Subnetting**
 		- Subnetting divides an IP network into smaller logical networks
+		- Improves performance by limiting unnecessary broadcast traffic
+		- Improves security as each subnet has its own firewall, and allow finer-grained event notifications
 		- *Variable Length Subnet Mask (VLSM)*
 			- Allows subnets of different sizes within the same network
 			- Reduces waste of IP addresses
