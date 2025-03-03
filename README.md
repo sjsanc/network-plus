@@ -322,13 +322,13 @@ Study notes for the CompTIA Network+ exam.
 			1. Cold site
 			2. Warm site
 			3. Hot site
-		3. High-availability appraoches
+		3. High-availability Approaches
 			1. Active-active
 			2. Active-passive
 		4. Testing
 			1. Tabletop exercises
 			2. Validation tests
-	4. IPv5 and IPv6 Network Services
+	4. IPv4 and IPv6 Network Services
 		1. Dynamic Addressing
 			1. DHCP
 				1. Reservations

@@ -1,0 +1,125 @@
+**Organisational Processes**
+- Documentation
+	- Physical diagrams
+	- Logical diagrams
+	- Cable maps
+	- Network diagrams
+		- Layer 1
+		- Layer 2
+		- Layer 3
+	- Asset inventory
+		- Hardware
+		- Software
+		- Licensing
+		- Warranty support
+	- IP Address Management (IPAM)
+	- Service-level Agreement (SLA)
+	- Wireless survey/heatmap
+- Life-cycle Management
+	- End-of-Life (EOL)
+	- End-of-Support (EOS)
+	- Software Management
+		- Patches and Bugfixes
+		- Operating System (OS)
+		- Firmware
+	- Decommissioning
+- Change Management
+	- Request Process Tracking/Service Request
+- Configuration Management
+	- Production Configuration
+	- Backup Configuration
+	- Baseline/Golden Configuration
+
+**Network Monitoring Technologies**
+- Methods
+	- SNMP
+		- Traps
+		- Management Information Base (MIB)
+		- Versions
+			- v2c
+			- v3
+		- Community strings
+		- Authentication
+	- Flow data
+	- Packet capture
+	- Baseline metrics
+		- Anomaly alerting notifications
+	- Log aggregation
+		- Syslog collector
+		- Security Information and Event Management (SIEM)
+	- Application Programming Interface (API) Integration
+	- Port mirroring
+- Solutions
+	- Network Discovery
+		- Ad-hoc
+		- Scheduled
+	- Traffic Analysis
+	- Performance monitoring
+	- Availability monitoring
+	- Configuration monitoring
+
+**Disaster recover**
+- DR Metrics
+	- Recovery point objective (RPO)
+	- Recovery time objective (RTO)
+	- Mean time to repair (MTTR)
+	- Mean time between failures (MTBF)
+- DR Sites
+	- Cold site
+	- Warm site
+	- Hot site
+- High-Availability Approaches
+	- Active-active
+	- Active-passive
+- Testing
+	- Tabletop exercises
+	- Validation tests
+
+**IPv4 and IPv6 Network Services**
+- Dynamic Addressing
+	- DHCP
+		- Reservations
+		- Scope
+		- Lease Time
+		- Options
+		- Relay/IP Helper
+		- Exlcusions
+	- Stateless Address Autoconfiguration (SLAAC)
+- Name Resolution
+	- DNS
+		- Donaim Name Security Extensions (DNSSEC)
+		- DNS over HTTPS (DoH)
+		- DNS over TLS (DoT)
+		- Record types
+			- Address (A)
+			- AAAA
+			- Canonical (CNAME)
+			- Mail Exchange (MX)
+			- Text (TXT)
+			- Nameserver (NS)
+			- Pointer (PTR)
+		- Zone types
+			- Forward
+			- Reverse
+		- Authoritative vs Non-Authoritative
+		- Primary vs Secondary
+		- Pecursive
+	- Hosts file
+- Time Protocols
+	- NTP
+	- Precision Time Protocol (PTP)
+	- Network Time Security (NTS)
+
+**Network Access and Management Methods**
+- Site-to-site VPN
+- Client-to-site VPN
+	- Clientless
+	- Split tunnel
+	- Full tunnel
+- Connection methods
+	- SSH
+	- GUI
+	- API
+	- Console
+- Jump box/host
+- Inband-vs Out-of-band management

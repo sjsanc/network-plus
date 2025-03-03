@@ -15,21 +15,19 @@
 - **Physical & Virtual**
 	- *Hub*
 		- A device that repeats incoming traffic to all ports.
-		- Has no knowledge of devices beyond connections tatus.
+		- Has no knowledge of devices beyond their connection status.
 	- *Router*
-		- Routes packets between networks (L3)
-		- Handles addressing and routing tables
-		- Connects over LAN and WAN
-		- Router connects two networks (or subnets). It defines the network gateway boundary.
+		- A device that routes packets between networks using IP addresses and routing tables (Layer 3).
+		- It defines the network gateway boundary, either between subnets or between a LAN and the internet (WAN).
+	- *Modem*
+		- A device that converts between analog and digital signals.
+		- Name derived from "modulator/demodulator".
 	- *Switch*
+		- A device that connects devices to local area network (LAN) by enabling forwarded packets.
 		- Uses MAC addressing and VLAN for traffic segmentation
-		- Connects computers within a local network, such as an office.
-		- *Layer 2*
-			- Most common type
-			- Uses MAC addresses to forward data packets
-		- *Layer 3*
-			- Uses IP addresses to forward data frames
-			- Allows inter-VLAN routing using switch virtual interfaces (SVIs), which create default gateways.
+		- Layer 2 switches are most common. They forward packets using the destination MAC address.
+		- Layer 3 switches add capability for forwarding frames using IP addresses.  
+		- Layer 3 switches allow inter-VLAN routing using switch virtual interfaces (SVIs), which act as default gateways.
 	- *Intrusion Detection System (IDS)*
 		- Monitors network traffic for suspicious activity
 		- Signature-based or anomaly-based
