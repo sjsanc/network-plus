@@ -1,125 +1,245 @@
 **Organisational Processes**
-- Documentation
-	- Physical diagrams
-	- Logical diagrams
-	- Cable maps
-	- Network diagrams
-		- Layer 1
-		- Layer 2
-		- Layer 3
-	- Asset inventory
-		- Hardware
-		- Software
-		- Licensing
-		- Warranty support
-	- IP Address Management (IPAM)
-	- Service-level Agreement (SLA)
-	- Wireless survey/heatmap
-- Life-cycle Management
-	- End-of-Life (EOL)
-	- End-of-Support (EOS)
-	- Software Management
-		- Patches and Bugfixes
-		- Operating System (OS)
-		- Firmware
-	- Decommissioning
-- Change Management
-	- Request Process Tracking/Service Request
-- Configuration Management
-	- Production Configuration
-	- Backup Configuration
-	- Baseline/Golden Configuration
+- **Documentation**
+	- *Physical diagrams*
+		- Depicts physical connections between devices.
+		- Includes racks, switches, servers, endpoints.
+	- *Logical diagrams*
+		- Depicts how devices communicate logically.
+		- Includes VLANs, subnets, routing paths and logical groupings.
+	- *Cable maps*
+		- Shows how cables are physically routing.
+		- Includes labels for ports, patch panels and endpoints.
+		- Useful for tracing connectivity issues.
+	- **Network diagrams**
+		- *Layer 1 (Physical)*
+			- Shows fibre/copper types, distances, power draw etc
+		- *Layer 2 (Data link)*
+			- Shows MAC addresses, VLANs, switches, spanning tree routes.
+			- Helps visualise loops.
+		- *Layer 3 (Network)*
+			- Shows IP addressing, routing tables, subnets, gateways.
+			- Incldues routers, firewalls and Layer 3 switches.
+	- **Asset inventory**
+		- Keeping inventories is important for compliance.
+		- *Hardware*
+			- Lists all physical devices.
+		- *Software*
+			- Lists software installations, versions, patches and configurations.
+		- *Licensing*
+			- Records software and hardware licenses.
+		- *Warranty support*
+			- Tracks warranties and support contracts.
+	- *IP Address Management (IPAM)*
+		- Tracks IP assignments, DHCP reservations, and subnet utilisation.
+		- Manual management or with tools such as *phpIPAM*.
+	- *Service-level Agreement (SLA)*
+		- Defines expected service performance (uptime, response time).
+		- Includes penalties for non-compliance.
+	- *Wireless survey/heatmap*
+		- Maps wireless coverage to identify dead-zones and interference.
+		- Tools such as WiFiAnalyzer, NetSpot
+- **Life-cycle Management**
+	- *End-of-Life (EOL)*
+		- When a vendor stops selling a product.
+		- They may still support or update existing products.
+	- *End-of-Support (EOS)*
+		- When a vendor stops providing patches, updates.
+		- Security risks increase due to lack of updates.
+	- **Software Management**
+		- *Patches and Bugfixes*
+		- *Operating System (OS)*
+		- *Firmware*
+	- *Decommissioning*
+		- Includes data sanitation and disposal.
+- **Change Management**
+	- *Request Process Tracking/Service Request*
+		- Formal system for submitting, reviewing and approving changes.
+		- Reduces downtime and security risks from unapproved modification.
+- **Configuration Management**
+	- *Production Configuration*
+	- *Backup Configuration*
+	- *Baseline/Golden Configuration*
+		- Validated, optimal configuration used as refernece
+		- Prevents config drift.
 
 **Network Monitoring Technologies**
-- Methods
-	- SNMP
-		- Traps
-		- Management Information Base (MIB)
-		- Versions
-			- v2c
-			- v3
-		- Community strings
-		- Authentication
-	- Flow data
-	- Packet capture
-	- Baseline metrics
-		- Anomaly alerting notifications
-	- Log aggregation
-		- Syslog collector
-		- Security Information and Event Management (SIEM)
-	- Application Programming Interface (API) Integration
-	- Port mirroring
-- Solutions
-	- Network Discovery
-		- Ad-hoc
-		- Scheduled
-	- Traffic Analysis
-	- Performance monitoring
-	- Availability monitoring
-	- Configuration monitoring
+- **Methods**
+	- **Simple Network Management Protocol (SNMP)**
+		- UDP Port 161
+		- SNMP is a protocol for network management. SNMP agents run as software on devices, which report back to a manager (network management station (NMS)) that polls for updates.
+		- *Traps*
+			- Alerts sent  by SNMP-enabled devices when a critical event occurs.
+		- *Management Information Base (MIB)*
+			- A database of objects managed by SNMP (cpu usage, memory etc), either with a standard definition or vendor specific.
+			- Objects are given an Object Identifier (OID) which is in effect a path through a tree structure within the MIB.
+		- **Versions**
+			- *v2c* - supports bulk transfers but lacks security
+			- *v3* - adds encryption and authentication
+		- *Community strings*
+			- v1 and v2c use communities to establish trust between managers and agents, defined as community strings. Each string manages a different type of activity. 
+			- It acts as a password.
+		- *Authentication*
+			- v3 supports encryption, message integrity and MD5/SHA based authentication.
+	- *Network flow data*
+		- Flow data is the collection of metadata about IP traffic flowing across a network. 
+	- *Packet capture*
+		- Capturing raw packets with tools like Wireshark or tcpdump is useful for analysis and troubleshooting.
+	- *Baseline metrics*
+		- Establishing normal network behaviour is necessary to detect anomalies
+	- **Log aggregation**
+		- *Syslog collector*
+			- Gathers logs from network devices
+		- *Security Information and Event Management (SIEM)*
+			- Correlates logs. 
+			- ELK Stack, Splunk etc.
+	- *Application Programming Interface (API) Integration*
+	- *Port mirroring*
+		- Copies network traffic to a monitoring device (SPAN)
+		- Used in intrusion detection, performance analysis.
+- **Solutions**
+	- **Network Discovery**
+		- *Ad-hoc*
+			- On-demand device discovery
+		- *Scheduled*
+			- Regular scanning for new devices
+	- *Traffic Analysis*
+	- *Performance monitoring*
+	- *Availability monitoring*
+	- *Configuration monitoring*
 
 **Disaster recover**
-- DR Metrics
-	- Recovery point objective (RPO)
-	- Recovery time objective (RTO)
-	- Mean time to repair (MTTR)
-	- Mean time between failures (MTBF)
-- DR Sites
-	- Cold site
-	- Warm site
-	- Hot site
-- High-Availability Approaches
-	- Active-active
-	- Active-passive
-- Testing
-	- Tabletop exercises
-	- Validation tests
+- **DR Metrics**
+	- *Recovery point objective (RPO)*
+		- Defines the maximum acceptable data loss measured in time
+		- Determines how often backups should be taken
+		- E.g. RPO of 1 hour means hourly backups
+	- *Recovery time objective (RTO)*
+		- Maxmimum time allowed to restore systems after an outage
+		- Shorter RTOs require more robust infrastructure
+	- *Mean time to repair (MTTR)*
+		- Average time to fix a failed component and restore service
+	- *Mean time between failures (MTBF)*
+		- Average time between system failures
+- **DR Sites**
+	- Data recovery sites are ranked by how frequently they get written to (affecting RPO) and how closely it replicates production hardware (cheaper DR sites are slower)
+	- *Cold site*
+	- *Warm site*
+	- *Hot site*
+- **High-Availability Approaches**
+	- *Active-active*
+		- A configuration where all nodes share workload.
+	- *Active-passive*
+		- A configuration where some systems run in standby.
+- **Testing**
+	- *Tabletop exercises*
+		- Discussion-based simulation where teams walk through DR plans.
+	- *Validation tests*
+		- Testing recovery procedures.
 
 **IPv4 and IPv6 Network Services**
-- Dynamic Addressing
-	- DHCP
-		- Reservations
-		- Scope
-		- Lease Time
-		- Options
-		- Relay/IP Helper
-		- Exlcusions
-	- Stateless Address Autoconfiguration (SLAAC)
-- Name Resolution
-	- DNS
-		- Donaim Name Security Extensions (DNSSEC)
-		- DNS over HTTPS (DoH)
-		- DNS over TLS (DoT)
-		- Record types
-			- Address (A)
-			- AAAA
-			- Canonical (CNAME)
-			- Mail Exchange (MX)
-			- Text (TXT)
-			- Nameserver (NS)
-			- Pointer (PTR)
-		- Zone types
-			- Forward
-			- Reverse
-		- Authoritative vs Non-Authoritative
-		- Primary vs Secondary
-		- Pecursive
-	- Hosts file
-- Time Protocols
-	- NTP
-	- Precision Time Protocol (PTP)
-	- Network Time Security (NTS)
+- **Dynamic Addressing**
+	- **DHCP**
+		- Dynamic Host Configuration Protocol. It automatically assigns IP addresses, subnet masks and gateways to devices.
+		- *Reservations*
+			- Assigns a specific IP to a MAC address.
+		- *Scope*
+			- Defines a range of IP addresses available for assignment.
+		- *Lease Time*
+			- The duration a device retains an assigned IP before renewal.
+		- *Options*
+			- Additional configurations (e.g. default gateway, DNS servers)
+		- *Relay/IP Helper*
+			- Forwards DHCP requests across subnets
+		- *Exlcusions*
+			- Prevents certain addresses from being assigned dynamically.
+	- **Stateless Address Autoconfiguration (SLAAC) (IPv6)**
+		- Devices self-assign an IP address using router advertisements.
+		- Negates the need for a DHCP server. 
+- **Name Resolution**
+	- **DNS**
+		- The Domain Name System consists of servers that translate IP addresses into human-readable domain names, via the process of name resolution.
+		- Your default configured DNS resolver is typically running on your router or your ISP's DNS. 
+		- *DNS Spoofing*
+			- Malicious actors can intercept DNS queries or return fake DNS responses. The fake responses are stored in the DNS server cache, causing the server to return false IP addresses for domain names, allowing the attacker to redirect traffic to their own addresses.
+		- *Domain Name Security Extensions (DNSSEC)*
+			- Protects against DNS spoofing by signing records with cryptographic keys.
+		- *DNS over HTTPS (DoH)*
+			- Encrypts DNS queries within HTTPS traffic.
+		- *DNS over TLS (DoT)*
+			- Encrypts DNS over a dedicated TLS connection.
+		- **Record types**
+			- *Address (A)*
+				- Maps a domain name to an IPv4 address.
+			- *AAAA*
+				- Maps a domain name to an IPv6 address.
+			- *Canonical (CNAME)*
+				- Alias for another domain.
+			- *Mail Exchange (MX)*
+				- Specifies a mail server for a domain.
+			- *Text (TXT)*
+				- Stores arbitrary text. 
+			- *Nameserver (NS)*
+				- Defines authoritative name servers for a domain.
+			- *Pointer (PTR)*
+				- Maps an IP address to a domain for reverse DNS lookup.
+		- **Zone types**
+			- DNS zones are portions of the DNS namespace managed by a specific authority. They refer to certain operations that a server can perform for a particular domain.
+			- *Primary (master)*
+				- Stores the original records for a domain. 
+				- Managed by an authoritative nameserver.
+				- E.g. a domain owner manages `example.com` on a primary server.
+			- *Secondary (slave)*
+				- A read-only copy of the primary zones.
+				- Provides redundancy and load-balancing.
+			- *Forward*
+				- Most common type of DNS zone.
+				- Resolves domain names to IP addresses.
+				- E.g. the server that resolves `google.com` to an IP address.
+			- *Reverse*
+				- Resolves IP addresses to domain names.
+				- Uses the PTR record.
+				- E.g. an email server might do a reverse lookup to verify a connection.
+		- **Authoritative vs Non-Authoritative**
+			- The authoritative server for a domain stores the original DNS record.
+			- Non-authoritative servers perform queries.
+		- *Recursive*
+			- A DNS server that queries multiple other servers until it finds an answer. If a resolution isn't already cached, it uses a recursive DNS resolution process that queries down through the root servers, the TLD nameservers, then the authoritative servers.
+	- *Hosts file*
+		- A local file that manually maps domain names to IP addresses.
+		- Overrides DNS queries for specific domains.
+- **Time Protocols**
+	- *Network Time Protocol (NTP)*
+		- Synchronises clocks across network devices.
+		- Divides servers into Stratum levels (0 = atomic clock, 1 = primary)
+	- *Precision Time Protocol (PTP)*
+		- More precise than NTP, with microsecond accuracy.
+	- *Network Time Security (NTS)*
+		- Adds authentication and encryption to NTP to prevent spoofing attacks.
 
 **Network Access and Management Methods**
-- Site-to-site VPN
-- Client-to-site VPN
-	- Clientless
-	- Split tunnel
-	- Full tunnel
-- Connection methods
+- *Site-to-site VPN*
+	- Connects entire networks over the internet.
+	- Uses VPN gateways at each site to handle encryption and decryption.
+	- Protocols: *IPSec, OpenVPN, GRE over IPSEC*
+- **Client-to-site VPN**
+	- *Clientless*
+		- Access via a browser.
+	- *Split tunnel*
+		- Only encrypts certain traffic. All other traffic goes through the normal connection. 
+		- Reduces VPN bandwidth usage.
+	- *Full tunnel*
+		- Encrypts all traffic through the VPN.
+- **Connection methods**
 	- SSH
 	- GUI
 	- API
 	- Console
-- Jump box/host
-- Inband-vs Out-of-band management
+- *Jump box/host*
+	- A hardened server used an intermediary to access sensitive devices.
+	- Helps enforce security policies by restricting direct access to infrastructure.
+- *In-band Management*
+	- Uses the same network connections for management, 
+	- E.g. SSH or RPD
+- *Out-of-Band Management*
+	- Uses a dedicated management network, separate from production, so that a network can be managed even if its down.
+	- E.g. console ports, LTE modems, remote KVM

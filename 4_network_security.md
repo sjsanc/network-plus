@@ -1,0 +1,80 @@
+**Basic Network Security**
+- Logical Security
+	- Encryption
+		- Data at rest
+		- Data in transit
+	- Certificates
+		- Public Key Infrastructure (PKI)
+		- Self-Signed
+	- Identity and Access Management (IAM)
+		- Authentication
+			- Multifactor Authentication (MFA)
+			- Single Sign-On (SSO)
+			- Remote Authentication Dial-In User (RADIUS)
+			- Lightweight Directory Access Protocol (LDAP)
+			- Security Assertion Markup Language (SAML)
+			- Terminal Access Controller Access Control System Plus (TACACS+)
+			- Time-based Authentication
+		- Authorisation
+			- Least Privilege
+			- Role-based Access Control
+	- Geofencing
+- Physical Security
+	- Camera
+	- Locks
+- Deception Technologies
+	- Honeypot
+	- Honeynet
+- Common Security Technology
+	- Risk
+	- Vulnerability
+	- Exploit
+	- Threat
+	- Confidentiality, Integrity, Availability (CIA) Triad
+- Audits and Regulatory Compliance
+	- Data Locality
+	- Payment Card Industry Data Security Standards (PCI-DSS)
+	- General Data Protection Regulation (GDPR)
+- Network Segmentation Enforcement
+	- Internet of Things (IoT)
+	- Industrial IoT (IIoT)
+	- Supervisory Control and Data Acquisition (SCADA)
+	- Industrial Control System (ICS)
+	- Operational Technology (OT)
+	- Guest
+	- Bring your own Device (BYOD)
+	
+**Network Attacks and Impact**
+- Distributed Denial of Service (DDoS)
+- VLAN Hopping
+- MAC Flooding
+- ARP Poisoning and Spoofing
+- DNS Poisoning and Spoofing
+- Rogue Devices and Services
+	- DHCP
+	- AP
+- Evil Twin
+- On-Path Attack
+- Social Engineering
+	- Phishing
+	- Dumpster Diving
+	- Shoulder Surfing
+	- Tailgating
+- Malware
+
+**Network Security and Defense Techniques**
+- Device Hardening
+	- Disabling unused ports and services
+	- Changing default passwords
+- Network Access Control (NAC)
+	- Port security
+	- 802.1X
+	- MAC Filtering
+- Key Management
+- Security Rules
+	- Access Control Lists (ACL)
+	- Uniform Resource Locator (URL) Filtering
+	- Content Filtering
+- Zones
+	- Trusted vs Untrusted
+	- Screened Subnet

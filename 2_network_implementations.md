@@ -194,16 +194,27 @@
 		2. Relies on a central wireless LAN controller (WLC).
 
 **Physical Installations**
-1. Important Implications
-	1. Locations
-		1. Intermediate Distribution Frame (IDF)
-		2. Main Distribution Frame (MDF)
-	2. Rack size
-	3. Port-side exhaust intake
-	4. Cabling
-		1. Patch panel
-		2. Fibre distribution panel
-	5. Lockable
+1. **Important Implications**
+	1. **Locations**
+		1. *Intermediate Distribution Frame (IDF)*
+			1. Equipment used to connect and manage network cabling in a building
+			2. Connects to the MDF.
+		2. *Main Distribution Frame (MDF)*
+			1. Primary connection point to external links.
+	2. *Rack size*
+		1. Based on a standard rack unit (U) of 1.75 inches (44.45mm) of vertical space.
+		2. Most common are:
+			1. 19-inch (482.6mm) width racks of various U height, up 42U (full-size).
+			2. 23-inch racks used in telecoms.
+	3. *Port-side exhaust intake*
+		1. Refers to the direction that air moves through a device. Cooling systems move air through the system by pulling it in via the intake (usually the front) and pushing it out via the outake (exhaust), at the back.
+	4. **Cabling**
+		1. *Patch panel*
+			1. A central point for connecting multiple devices in a structured cabling system. Incoming cables are plugged into the back of the patch panel. Short patch cords can be used at the front of the panel to configure different connections. 
+		2. *Fibre distribution panel*
+			1. A central point for terminating, connecting and routing fibre cables.
+	5. *Lockable*
+		1. You can lock it!
 2. Power
 	1. Uninterrupted power supply (UPS)
 	2. Power distribution unit (PDU)
